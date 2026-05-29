@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dandy'World Флуд — SCARY PLACE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #e9ecef 0%, #f8f9fa 100%);
+            font-family: 'Segoe UI', 'Google Sans', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        /* Карточка в стиле Material Design / Google Store */
+        .card {
+            max-width: 620px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 8px 18px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            backdrop-filter: blur(0px);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 32px 48px -16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Внутренние отступы */
+        .content {
+            padding: 2.2rem 2rem 2.8rem;
+        }
+
+        /* Заголовок "Приветствуем!" — крупный, жирный, по центру */
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e2b3c, #0f2b3b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* Текст инструкции (меньше и аккуратно) */
+        .instruction-text {
+            font-size: 1.1rem;
+            line-height: 1.55;
+            color: #2c3e44;
+            background: #f1f5f9;
+            padding: 1.4rem 1.6rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #e2edf2;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .instruction-text p {
+            margin-bottom: 0.75rem;
+        }
+
+        .instruction-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .instruction-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .instruction-list li {
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-weight: 500;
+            color: #1a3e4c;
+        }
+
+        .instruction-list li::before {
+            content: "✦";
+            color: #1e88e5;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-block;
+            width: 1.4rem;
+        }
+
+        /* Блок кнопок */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Стиль большой синей кнопки с белым текстом */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background-color: #1a73e8;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 1rem 0.8rem;
+            border-radius: 3rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(2px);
+        }
+
+        .btn-primary:hover {
+            background-color: #0d5bbd;
+            transform: scale(1.01);
+            box-shadow: 0 12px 20px -8px rgba(26, 115, 232, 0.4);
+            text-decoration: none;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+            background-color: #0a4d9e;
+        }
+
+        /* Легкая анимация при загрузке */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 500px) {
+            .content {
+                padding: 1.6rem;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .instruction-text {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .btn-primary {
+                font-size: 1.1rem;
+                padding: 0.9rem 0.5rem;
+            }
+            .instruction-list li {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* маленькая стилизация под Telegram hints (нейтрально) */
+        .footnote {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6c8d9c;
+            border-top: 1px solid #e2edf2;
+            padding-top: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="content">
+            <!-- Большими буквами в середине сверху -->
+            <div class="hero-title">Приветствуем!</div>
+
+            <!-- Ниже текст поменьше с пошаговой инструкцией -->
+            <div class="instruction-text">
+                <p style="font-weight: 600; margin-bottom: 0.6rem;">✨ Чтобы попасть в наш Флуд вам надо:</p>
+                <ul class="instruction-list">
+                    <li>Прочитать правила</li>
+                    <li>Написать "Совладельцу" сообщение по типу 'Я бы хотел вступить во флуд'</li>
+                    <li>Выбрать роль (в чате с совладельцем)</li>
+                    <li>Ждать ссылку</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #3d6b7c;">🔹 Следуй шагам — и ты во флуде! </p>
+            </div>
+
+            <!-- Блок кнопок: Правила и Соовладелец -->
+            <div class="buttons-container">
+                <!-- Кнопка "Правила" с ссылкой https://t.me/scaryinf -->
+                <a href="https://t.me/scaryinf" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                    Правила
+                </a>
+                <!-- Кнопка "Соовладелец" с ссылкой https://t.me/@Arubikeshka -->
+                <a href="https://t.me/Arubikeshka" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                    Совладелец
+                </a>
+            </div>
+
+            <div class="footnote">
+                Нажми на кнопку, чтобы перейти в Telegram<br>
+                После выполнения всех шагов ты получишь доступ к нашему флуду (но это не точно)
+            </div>
+        </div>
+    </div>
+</body>
+</html>
